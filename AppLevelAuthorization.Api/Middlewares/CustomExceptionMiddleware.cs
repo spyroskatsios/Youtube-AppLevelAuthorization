@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using AppLevelAuthorization.Application.Exceptions;
 
 namespace AppLevelAuthorization.Api.Middlewares;
 
@@ -33,6 +34,10 @@ public class CustomExceptionMiddleware
         
         switch (exception)
         {
+            case ForbiddenException:
+                code = HttpStatusCode.Forbidden;
+                message = string.Empty;
+                break;
             default:
                 code = HttpStatusCode.InternalServerError;
                 message = "Something went wrong";

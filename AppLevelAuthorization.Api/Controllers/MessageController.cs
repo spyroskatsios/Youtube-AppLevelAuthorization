@@ -25,21 +25,18 @@ public class MessageController : ControllerBase
         return Ok(await _mediator.Send(new UserQuery()));
     }
     
-    [Authorize(Roles = "Supervisor")]
     [HttpGet(Routes.Messages.Supervisor)]
     public async Task<IActionResult> GetMessageForSupervisor()
     {
         return Ok(await _mediator.Send(new SupervisorQuery()));
     }
 
-    [Authorize(Roles = "Manager")]
     [HttpGet(Routes.Messages.Manager)]
     public async Task<IActionResult> GetMessageForManager()
     {
         return Ok(await _mediator.Send(new ManagerQuery()));
     }
 
-    [Authorize(Roles = "Admin")]
     [HttpGet(Routes.Messages.Admin)]
     public async Task<IActionResult> GetMessageForAdmin()
     {

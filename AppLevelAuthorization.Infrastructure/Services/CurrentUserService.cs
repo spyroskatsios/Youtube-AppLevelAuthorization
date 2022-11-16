@@ -15,4 +15,8 @@ public class CurrentUserService : ICurrentUserService
     }
     
     public string? UserId => _httpContextAccessor?.HttpContext?.User?.Claims?.Single(x => x.Type == ClaimTypes.NameIdentifier).Value;
+
+    public IEnumerable<string> Roles => _httpContextAccessor?.HttpContext?.User?.Claims?
+        .Where(x => x.Type == ClaimTypes.Role)
+        .Select(x => x.Value) ?? Enumerable.Empty<string>();
 }

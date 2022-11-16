@@ -1,7 +1,9 @@
-﻿using MediatR;
+﻿using AppLevelAuthorization.Application.Identity;
+using MediatR;
 
 namespace AppLevelAuthorization.Application.Queries.RoleQueries;
 
+[Authorize(Role = EnRole.Manager)]
 public record ManagerQuery() : IRequest<string>;
 
 public class ManagerQueryHandler : IRequestHandler<ManagerQuery, string>
